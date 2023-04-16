@@ -1,16 +1,32 @@
-import pandas as pd
+import pandas as pd  
 import plotly.graph_objects as go
 
 # Load the data from the CSV file into a Pandas DataFrame
-data = pd.read_csv("data.csv")
+df = pd.read_csv("data.csv")
 
-# Calculate the average, minimum and maximum temperature and humidity using Pandas
-avg_temp = data["Temperature"].mean()
-min_temp = data["Temperature"].min()
-max_temp = data["Temperature"].max()
-avg_humidity = data["Humidity"].mean()
-min_humidity = data["Humidity"].min()
-max_humidity = data["Humidity"].max()
+
+
+
+filename = 'data.csv'   
+date_column_name = 'date'   
+value_column_name = 'temp'
+value_column_name2 = 'humi'  
+target_date = '3/11/2023'   
+
+df = pd.read_csv(filename)
+filtered_df = df[df[date_column_name] == target_date]
+
+avg_temp = filtered_df[value_column_name].mean()
+max_temp = filtered_df[value_column_name].max()
+min_temp= filtered_df[value_column_name].min()
+
+avg_humidity = filtered_df[value_column_name2].mean()
+max_humidity= filtered_df[value_column_name2].max()
+min_humidity= filtered_df[value_column_name2].min()
+
+print(avg_temp)
+print(avg_humidity)
+
 
 # Create a Plotly figure using the calculated values
 fig = go.Figure(
